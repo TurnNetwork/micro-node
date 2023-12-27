@@ -1,0 +1,134 @@
+{
+  "name": "Bubble_MicroNode",
+  "private": true,
+  "version": "0.1.0",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "chcp 65001 && vite",
+    "dev_mac": "vite",
+    "build": "vue-tsc && rimraf dist && vite build && electron-builder",
+    "preview": "vite preview",
+    "build:win": "npm run build && electron-builder --win --config",
+    "build:mac": "npm run build && electron-builder --mac --config",
+    "build:linux": "npm run build && electron-builder --linux --config",
+    "electron:generate-icons": "electron-icon-builder --input=./public/favicon.png --output=public --flatten"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.4.0",
+    "big.js": "^6.2.1",
+    "bip39": "^3.1.0",
+    "bufferutil": "^4.0.8",
+    "compressing": "^1.9.1",
+    "copy-to-clipboard": "^3.3.3",
+    "crypto-js": "^4.1.1",
+    "electron-icon-builder": "^2.0.1",
+    "electron-log": "^4.4.8",
+    "electron-store": "^8.1.0",
+    "element-plus": "^2.3.8",
+    "ethereumjs-common": "^1.5.2",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-util": "^7.1.5",
+    "ethers": "^6.7.1",
+    "is-port-available": "^0.1.5",
+    "json-bigint": "^1.0.0",
+    "md5": "^2.3.0",
+    "ncp": "^2.0.0",
+    "pinia": "^2.1.6",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "sqlite3": "^5.1.6",
+    "ssh2": "^1.14.0",
+    "unix-domain-socket": "^0.1.2",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-require-transform": "^1.0.21",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "web3": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/md5": "^2.3.2",
+    "@types/node": "^20.4.5",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.14",
+    "electron": "^25.3.1",
+    "electron-builder": "^24.6.3",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-rebuild": "^3.2.9",
+    "postcss": "^8.4.27",
+    "rimraf": "^5.0.1",
+    "sass": "^1.65.1",
+    "sass-loader": "^13.3.2",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.4.5",
+    "vite-plugin-electron": "^0.12.0",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue-tsc": "^1.8.5"
+  },
+  "build": {
+    "appId": "com.Bubble_MicroNode.desktop",
+    "productName": "Bubble_MicroNode",
+    "asar": true,
+    "copyright": "Copyright © 2022 Bubble_MicroNode",
+    "directories": {
+      "output": "output/${version}"
+    },
+    "extraFiles": [
+      "./turn/Turn_micro.exe",
+      "./turn/bls384.dll",
+      "./turn/mclbn384.dll",
+      "./turn/genesis.json",
+      "./turn/InItGenesis.json",
+      "./turn/keyTool.exe",
+      "./public/**/*",
+      "./config/**/*",
+      "./turn/mac_inter/**/*",
+      "./turn/mac_m/**/*"
+    ],
+    "files": [
+      "./dist/**/*",
+      "./package.json",
+      "./dist-electron"
+    ],
+    "mac": {
+      "icon": "public/icons/icon.icns",
+      "artifactName": "${productName}.${ext}",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}.${ext}"
+    },
+    "portable": {},
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": "always",
+      "installerIcon": "./public/icons/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://127.0.0.1:8080"
+      }
+    ],
+    "releaseInfo": {
+      "releaseNotes": "Specific content of version updates"
+    }
+  }
+}

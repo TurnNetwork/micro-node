@@ -1,0 +1,1 @@
+export const StakIngCode = '321201'

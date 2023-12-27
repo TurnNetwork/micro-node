@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <title>Bubble Micronode</title> -->
+  <title><%- title %></title>
+</head>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  ._loading {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    animation: rotate 2s infinite linear;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .content {
+    background: linear-gradient(125.007276696537deg, rgba(2, 167, 240, 1) 1%, rgba(236, 128, 141, 1) 105%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+  }
+
+  .start_logo {
+    position: absolute;
+    left: calc(50% - 200px);
+    top: calc(50% - 50px);
+  }
+
+  .start_version {
+    position: absolute;
+    bottom: 50px;
+    font-weight: 600;
+    color: aliceblue;
+    width: 300px;
+    left: calc(50% - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+</style>
+
+<body>
+  <script>
+    var global = window
+    const replace = () => {
+      console.log(123);
+      window.location.reload()
+    }
+
+    const openDevTools = () => {
+      const { electron } = window
+      electron.openDevTools()
+    }
+  </script>
+  <div id="app">
+  </div>
+  <div class="content">
+    <img class="start_logo" src="/public/Logo.png" width="400px" alt="">
+    <div class="start_version">
+      <!-- <p>v<span>version</span></p>
+      <p>Powered by Turn Network</p> -->
+      <p>v<span> <%- version %></span></p>
+      <p>Powered by <%- networkName %></p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
